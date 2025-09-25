@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "open-digger-mcp": {
+      "command": "node",
+      "args": ["./mcp-server/dist/index.js"],
+      "cwd": "./mcp-server/",
+      "env": {
+        "CACHE_TTL_SECONDS": "300",
+        "NODE_ENV": "production"
+      }
+    }
+  }
+}

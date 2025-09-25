@@ -1,0 +1,29 @@
+.vscode
+.idea
+.DS_Store
+*.swp
+*.lock
+
+node_modules/
+*/**/node_modules
+lib
+dist
+node_modules
+
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+
+# Build output
+dist/
+build/
+
+# IDE files
+.vscode/
+.cursor/
+.idea/
+*.swp
+*.swo

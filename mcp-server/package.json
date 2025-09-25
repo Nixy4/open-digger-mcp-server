@@ -1,0 +1,86 @@
+{
+  "name": "open-digger-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for OpenDigger data with comprehensive analysis tools, trend analysis, and repository comparison capabilities",
+  "license": "Apache-2.0",
+  "author": "Frank Zhao",
+  "contributors": [
+    {
+      "name": "Pratyay Banerjee"
+    }
+  ],
+  "homepage": "https://open-digger.cn/",
+  "bugs": "https://github.com/X-lab2017/open-digger-mcp-server/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/X-lab2017/open-digger-mcp-server.git"
+  },
+  "type": "module",
+  "bin": {
+    "open-digger-mcp-server": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "npm run clean && tsc && chmod +x dist/index.js",
+    "dev": "npm run build && node dist/index.js",
+    "start": "node dist/index.js",
+    "watch": "tsc --watch",
+    "clean": "rm -rf dist",
+    "prepare": "npm run build",
+    "cache:clear": "node -e \"console.log('Cache management available via server_health tool')\"",
+    "sse:test": "SSE_PORT=3001 npm start",
+    "debug": "NODE_OPTIONS='--inspect' npm start"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "opendigger",
+    "open-source",
+    "analytics",
+    "github",
+    "repository-metrics",
+    "developer-insights",
+    "trend-analysis",
+    "data-analysis",
+    "software-metrics",
+    "repository-health",
+    "developer-productivity",
+    "open-source-intelligence",
+    "community-analytics",
+    "code-metrics"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.0.1",
+    "zod": "^3.22.4",
+    "zod-to-json-schema": "^3.23.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "typescript": "^5.6.2"
+  },
+  "peerDependencies": {
+    "node": ">=18.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "config": {
+    "cache_ttl_default": 300,
+    "batch_size_default": 5,
+    "max_concurrent_requests": 100
+  },
+  "optionalDependencies": {},
+  "bundleDependencies": false,
+  "preferGlobal": false
+}
