@@ -1,7 +1,7 @@
 {
   "name": "open-digger-mcp-server",
   "version": "1.0.0",
-  "description": "MCP server for OpenDigger data with comprehensive analysis tools, trend analysis, and repository comparison capabilities",
+  "description": "MCP server for OpenDigger data with comprehensive analysis tools, trend analysis, repository comparison capabilities and more.",
   "license": "Apache-2.0",
   "author": "Frank Zhao",
   "contributors": [
@@ -32,7 +32,6 @@
     "watch": "tsc --watch",
     "clean": "rm -rf dist",
     "prepare": "npm run build",
-    "cache:clear": "node -e \"console.log('Cache management available via server_health tool')\"",
     "sse:test": "SSE_PORT=3001 npm start",
     "debug": "NODE_OPTIONS='--inspect' npm start"
   },
@@ -70,11 +69,6 @@
     "node": ">=18.0.0",
     "npm": ">=8.0.0"
   },
-  "os": [
-    "darwin",
-    "linux",
-    "win32"
-  ],
   "config": {
     "cache_ttl_default": 300,
     "batch_size_default": 5,
