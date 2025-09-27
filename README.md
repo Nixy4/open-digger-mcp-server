@@ -8,6 +8,10 @@ A Model Context Protocol (MCP) server for OpenDigger enabling advanced repositor
 ```bash
 # Setup
 git clone https://github.com/X-lab2017/open-digger-mcp-server.git
+
+# (Optional) Ensure you're on the master branch
+git checkout master
+
 cd open-digger-mcp-server && cd mcp-server
 npm install
 npm run build
@@ -77,9 +81,12 @@ To further confirm that the server is functioning correctly, you can check the f
 
 
 ### Metrics
-**Core Metrics**: `openrank`, `stars`, `forks`, `contributors`, `participants`, `issues_new`, `issues_closed`, `pull_requests`, `commits`, `activity`
 
-**Extended Metrics**: `technical_fork`, `bus_factor`, `releases`, `inactive_contributors`, `maintainer_count`, `community_activity`
+- **Core Metrics**: `openrank`, `stars`, `forks`, `contributors`, `participants`, `issues_new`, `issues_closed`, `pull_requests`, `commits`, `activity`
+
+- **Extended Metrics**: `technical_fork`, `bus_factor`, `releases`, `inactive_contributors`, `maintainer_count`, `community_activity`
+
+- **Additional Metrics**: `change_requests`, `pull_requests_accepted`, `pull_requests_merged`, `issue_comments`, `issue_response_time`, `code_change_lines`, `developer_network`
 
 ---
 

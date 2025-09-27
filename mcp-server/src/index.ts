@@ -220,6 +220,11 @@ server.setRequestHandler(CallToolRequestSchema, async (request: any) => {
         
         // Process in batches to respect API limits
         for (let i = 0; i < args.requests.length; i += BATCH_SIZE) {
+          // Add delay between batches to avoid rate limits (except first batch)
+          if (i > 0) {
+            await new Promise(resolve => setTimeout(resolve, 100));
+          }
+
           const chunk = args.requests.slice(i, i + BATCH_SIZE);
           const chunkResults = await Promise.all(chunk.map(async (r: z.infer<typeof inputSchema>) => {
             try {
@@ -232,12 +237,6 @@ server.setRequestHandler(CallToolRequestSchema, async (request: any) => {
           }));
           
           results.push(...chunkResults);
-          
-          // NOTE: Add delay between batches to avoid rate limits
-          // TODO: We need to test & confirm if this is necessary  |  cc: @birdflyi, @frank-zsy
-          if (i + BATCH_SIZE < args.requests.length) {
-            await new Promise(resolve => setTimeout(resolve, 100));
-          }
         }
 
         return { 
@@ -622,7 +621,8 @@ server.setRequestHandler(GetPromptRequestSchema, async (request: any) => {
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("OpenDigger MCP Server running (on stdio)...");
+  // console.error("OpenDigger MCP Server running (on stdio)...");
+  console.log("OpenDigger MCP Server running (on stdio)...");
 
   const ssePortEnv = process.env.SSE_PORT;
   if (ssePortEnv) {
@@ -764,12 +764,12 @@ async function main() {
     });
 
     serverHttp.listen(ssePort, sseHost, () => {
-      console.error(`SSE HTTP server listening on http://${sseHost}:${ssePort}`);
+      console.log(`SSE HTTP server listening on http://${sseHost}:${ssePort}`);
     });
   }
 }
 
 main().catch((error) => {
-  console.error("Fatal error in main():", error);
+  console.log("Fatal error in main():", error);
   process.exit(1);
 });

@@ -89,7 +89,8 @@ export async function fetchWithCache(url: string, ttlSeconds: number): Promise<u
   try {
     const cached = getCached(url);
     if (cached !== undefined) {
-      console.error(`Cache hit for ${url} (${(performance.now() - startTime).toFixed(2)}ms)`);
+      // console.error(`Cache hit for ${url} (${(performance.now() - startTime).toFixed(2)}ms)`);
+      console.log(`Cache hit for ${url} (${(performance.now() - startTime).toFixed(2)}ms)`);
       return cached;
     }
     

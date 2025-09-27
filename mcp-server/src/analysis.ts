@@ -333,10 +333,15 @@ function createEmptyTrendAnalysis(): TrendAnalysis {
 }
 
 /**
- * Calculates the momentum of a time-series dataset.
+ * Calculates the momentum of a time-series dataset by comparing growth rates between periods.
  *
- * @param values - Array of time-series data points.
+ * @param values - Array of time-series data points with date and value properties.
  * @returns The momentum classification: 'accelerating', 'decelerating', 'stable', or 'insufficient_data'.
+ * 
+ * The function splits the data into two halves and calculates the percentage growth rate for each half.
+ * It then compares these rates to determine if growth is accelerating (second half growing faster),
+ * decelerating (second half growing slower), or stable (similar growth rates). A 5% threshold is used
+ * to determine significance of the difference in growth rates.
  */
 export function calculateMomentum(values: Array<{date: string; value: number}>): 'accelerating' | 'decelerating' | 'stable' | 'insufficient_data' {
   if (values.length < 6) return 'insufficient_data';
@@ -345,16 +350,16 @@ export function calculateMomentum(values: Array<{date: string; value: number}>):
   const firstHalf = values.slice(0, midpoint);
   const secondHalf = values.slice(midpoint);
 
-  const firstHalfGrowth = firstHalf.length > 1
-    ? ((firstHalf[firstHalf.length - 1]!.value - firstHalf[0]!.value) / firstHalf.length)
+  const firstHalfGrowthRate = firstHalf.length > 1 && firstHalf[0]!.value > 0
+    ? ((firstHalf[firstHalf.length - 1]!.value - firstHalf[0]!.value) / firstHalf[0]!.value)
     : 0;
 
-  const secondHalfGrowth = secondHalf.length > 1
-    ? ((secondHalf[secondHalf.length - 1]!.value - secondHalf[0]!.value) / secondHalf.length)
+  const secondHalfGrowthRate = secondHalf.length > 1 && secondHalf[0]!.value > 0
+    ? ((secondHalf[secondHalf.length - 1]!.value - secondHalf[0]!.value) / secondHalf[0]!.value)
     : 0;
 
-  const momentumDifference = secondHalfGrowth - firstHalfGrowth;
-  const threshold = Math.max(0.1, (firstHalf[0]?.value ?? 0) * 0.01); // Dynamic threshold based on scale
+  const momentumDifference = secondHalfGrowthRate - firstHalfGrowthRate;
+  const threshold = 0.05; // 5% difference in growth rates | cc: @birdflyi, @frank-zsy
 
   if (Math.abs(momentumDifference) < threshold) return 'stable';
   return momentumDifference > 0 ? 'accelerating' : 'decelerating';
