@@ -33,7 +33,7 @@
     "clean": "rm -rf dist",
     "prepare": "npm run build",
     "sse:test": "cross-env SSE_PORT=3001 npm start",
-    "debug": "NODE_OPTIONS='--inspect' npm start"
+    "debug": "cross-env NODE_OPTIONS='--inspect' npm start"
   },
   "keywords": [
     "mcp",
