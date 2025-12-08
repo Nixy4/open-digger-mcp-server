@@ -621,8 +621,8 @@ server.setRequestHandler(GetPromptRequestSchema, async (request: any) => {
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  // console.error("OpenDigger MCP Server running (on stdio)...");
-  console.log("OpenDigger MCP Server running (on stdio)...");
+  console.error("OpenDigger MCP Server running (on stdio)...");
+  // console.log("OpenDigger MCP Server running (on stdio)...");
 
   const ssePortEnv = process.env.SSE_PORT;
   if (ssePortEnv) {

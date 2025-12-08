@@ -54,14 +54,14 @@
     "code-metrics"
   ],
   "dependencies": {
-    "@modelcontextprotocol/sdk": "1.0.1",
+    "@modelcontextprotocol/sdk": "^1.24.3",
     "zod": "^3.22.4",
     "zod-to-json-schema": "^3.23.5"
   },
   "devDependencies": {
     "@types/node": "^22",
-    "typescript": "^5.6.2",
-    "cross-env": "^10.0.0"
+    "cross-env": "^10.0.0",
+    "typescript": "^5.6.2"
   },
   "peerDependencies": {
     "node": ">=18.0.0"
@@ -75,7 +75,6 @@
     "batch_size_default": 5,
     "max_concurrent_requests": 100
   },
-  "optionalDependencies": {},
-  "bundleDependencies": false,
+  "bundleDependencies": [],
   "preferGlobal": false
 }
