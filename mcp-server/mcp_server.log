@@ -1,0 +1,6 @@
+nohup: ignoring input
+
+> open-digger-mcp-server@1.0.0 start
+> node dist/index.js
+
+OpenDigger MCP Server running (on stdio)...
